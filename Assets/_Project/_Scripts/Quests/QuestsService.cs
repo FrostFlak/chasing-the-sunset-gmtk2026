@@ -1,39 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using Alchemy.Inspector;
 using Helpers;
 using UnityEngine;
 
 namespace Quests {
-    public class QuestsService : SingletonMonoBehaviour<QuestsService> {
+    public class QuestsService : MonoBehaviour {
         
-        [SerializeField] private List<Quest> _databaseQuests = new();
         private readonly Dictionary<string, Quest> _activeQuests = new();
-
         public event Action<Quest> OnQuestStarted;
         public event Action<Quest> OnQuestUpdated;
         public event Action<Quest> OnQuestCompleted;
 
-        [Button]
-        public void Run(string questId) {
-            var quest = _databaseQuests.Find(q => q.ID == questId);
-
-            if (quest == null) {
-                Log.Error($"Quest with ID '{questId}' not found in database!");
+        public void Run(Quest quest) {
+            if (_activeQuests.ContainsKey(quest.ID)) {
+                Log.Warning($"Quest '{quest.ID}' is already active.");
                 return;
             }
-
-            if (_activeQuests.ContainsKey(questId)) {
-                Log.Warning($"Quest '{questId}' is already active.");
-                return;
-            }
-
+        
             quest.OnUpdated += HandleQuestUpdated;
             quest.OnCompleted += HandleQuestCompleted;
-
-            _activeQuests.Add(questId, quest);
+        
+            _activeQuests.Add(quest.ID, quest);
             quest.Run();
-
+        
             OnQuestStarted?.Invoke(quest);
             Log.Debug($"Quest accepted: {quest.Title}");
         }

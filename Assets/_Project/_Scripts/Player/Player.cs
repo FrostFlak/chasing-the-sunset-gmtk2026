@@ -20,12 +20,9 @@ namespace Player {
         private GameplayInput _input;
         private PlayerAnimator _playerAnimator;
 
-        private void OnEnable() {
-            _input = new GameplayInput();
-            _input.Enable();
-        }
-
         private void Start() {
+            _input = new GameplayInput();
+            
             _controller.Initialize(_input, _rigidbody, _cameraPivot);
             _playerAnimator = new PlayerAnimator(_input, _animator, _spriteRenderer, this);
             
@@ -38,12 +35,18 @@ namespace Player {
                 tickable.Tick(Time.deltaTime);
         }
 
-        private void OnDisable() {
-            _input.Disable();
+        private void OnDestroy() {
             _input.Dispose();
             
             foreach (var d in _disposables) 
                 d.Dispose();
+        }
+
+        public void SetInputState(bool active) {
+            if (active)
+                _input.Enable();
+            else
+                _input.Disable();
         }
     }
 }

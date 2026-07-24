@@ -423,6 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2741958647044303218}
   - component: {fileID: 4842942781217889927}
+  - component: {fileID: 6411594887201848051}
   m_Layer: 5
   m_Name: QuestView
   m_TagString: Untagged
@@ -467,3 +468,17 @@ MonoBehaviour:
   _titleLbl: {fileID: 489731012348637951}
   _descLbl: {fileID: 5774846847479810115}
   _progressLbl: {fileID: 3076885725634828470}
+  _canvasGroup: {fileID: 6411594887201848051}
+  _questsService: {fileID: 0}
+--- !u!225 &6411594887201848051
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485907413530523901}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

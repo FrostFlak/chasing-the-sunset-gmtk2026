@@ -36,5 +36,10 @@ namespace Quests {
             IsActive = false;
             OnCompleted?.Invoke(this);
         }
+        
+        #if UNITY_EDITOR
+        [Button]
+        private void ForceComplete() => AddProgress(RequiredAmount);
+        #endif
     }
 }

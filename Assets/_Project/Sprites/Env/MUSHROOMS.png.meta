@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4f2ac07ffbad7f6468b0017adc72312c
+guid: 2a9dd67023fe476408f06f1f8775b790
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MUSHROOMS_0
+      name: gribi2_0
       rect:
         serializedVersion: 2
-        x: 351
-        y: 1572
-        width: 570
-        height: 539
+        x: 71
+        y: 315
+        width: 113
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74788522586bebb45b2d2cb5be7c38db
-      internalID: 365346940
+      spriteID: ae766815e0abbfb4ba03e615dd84de59
+      internalID: -925254090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MUSHROOMS_1
+      name: gribi2_1
       rect:
         serializedVersion: 2
-        x: 910
-        y: 1569
-        width: 697
-        height: 700
+        x: 183
+        y: 314
+        width: 138
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd6fadf3873ec424bb31872acf5d59f7
-      internalID: -1930487684
+      spriteID: af92557c0fc7e5449b9d9aeb4d27876a
+      internalID: -1371777581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MUSHROOMS_2
+      name: gribi2_2
       rect:
         serializedVersion: 2
-        x: 1655
-        y: 1527
-        width: 646
-        height: 758
+        x: 332
+        y: 306
+        width: 128
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c1367a702af9b9489bc22030f37c85e
-      internalID: 1738074758
+      spriteID: 981f87b574e1f0249af23950b743102b
+      internalID: 1232657724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MUSHROOMS_3
+      name: gribi2_3
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 598
-        width: 257
-        height: 173
+        x: 211
+        y: 120
+        width: 50
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f340073e915044e9afe528ee26429b
-      internalID: -1244653255
+      spriteID: 8602eb2bdd10c9d42b935b0860e4fa66
+      internalID: -443036479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MUSHROOMS_4
+      name: gribi2_4
       rect:
         serializedVersion: 2
-        x: 1326
-        y: 599
-        width: 266
-        height: 270
+        x: 267
+        y: 118
+        width: 51
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77bb2d4ec0249db4a830252be6a854b2
-      internalID: -700834957
+      spriteID: 17b0c23616b7d06438e447c7627fae40
+      internalID: 1113187013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MUSHROOMS_6
+      name: gribi2_5
       rect:
         serializedVersion: 2
-        x: 1650
-        y: 509
-        width: 572
-        height: 597
+        x: 331
+        y: 102
+        width: 113
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,8 +222,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a07b46ea1da50304ea8b1b2a06d78120
-      internalID: -585890907
+      spriteID: 9b07d35ff509c82449f2d51e8bc33545
+      internalID: 102114582
       vertices: []
       indices: 
       edges: []
@@ -232,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 696a123bbbf9c944b8026d90854096fe
+    spriteID: 1be9c2f81077d064bb04c52ca6e08325
     internalID: 0
     vertices: []
     indices: 
@@ -242,14 +242,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MUSHROOMS_0: 365346940
-      MUSHROOMS_1: -1930487684
-      MUSHROOMS_2: 1738074758
-      MUSHROOMS_3: -1244653255
-      MUSHROOMS_4: -700834957
-      MUSHROOMS_5: -1948594144
-      MUSHROOMS_6: -585890907
-      MUSHROOMS_7: -278468927
+      gribi2_0: -925254090
+      gribi2_1: -1371777581
+      gribi2_2: 1232657724
+      gribi2_3: -443036479
+      gribi2_4: 1113187013
+      gribi2_5: 102114582
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

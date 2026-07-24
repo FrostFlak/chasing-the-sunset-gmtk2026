@@ -2,6 +2,7 @@
   "dependencies": {
     "com.annulusgames.alchemy": "https://github.com/annulusgames/Alchemy.git?path=/Alchemy/Assets/Alchemy",
     "com.chenpipi.project-pin-board": "https://github.com/ichenpipi/unity-project-pin-board.git",
+    "com.fedediaz.applyplaymodevalues": "https://github.com/fedediazceo/playmodesave.git#v0.1.1-preview.1",
     "com.smkplus.custom-toolbar": "https://github.com/smkplus/CustomToolbar.git#master",
     "com.unity.ai.navigation": "2.0.11",
     "com.unity.collab-proxy": "2.11.4",

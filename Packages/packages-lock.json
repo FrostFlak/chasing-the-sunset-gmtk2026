@@ -21,6 +21,13 @@
       "dependencies": {},
       "hash": "2ecf5f15398dcd085ebf8cb1131b973da3277559"
     },
+    "com.fedediaz.applyplaymodevalues": {
+      "version": "https://github.com/fedediazceo/playmodesave.git#v0.1.1-preview.1",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c4bf4f43d3c5d8d8006313a179bf4fc5cce4d6f5"
+    },
     "com.smkplus.custom-toolbar": {
       "version": "https://github.com/smkplus/CustomToolbar.git#master",
       "depth": 0,

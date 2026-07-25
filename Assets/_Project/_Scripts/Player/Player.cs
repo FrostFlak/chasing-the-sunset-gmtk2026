@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using Entities;
 using Helpers;
+using Helpers.ExtMethods;
 using Helpers.Tick;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = System.Random;
 
 namespace Player {
     public class Player :  MonoBehaviour {
@@ -18,7 +20,10 @@ namespace Player {
         [Header("Properties")]
         [field: SerializeField] public int Age { get; set; }
         [SerializeField] private int _raycastDistance; 
-        [SerializeField] private LayerMask _interactionLayerMask; 
+        [Header("SFX")]
+        [SerializeField] private AudioSource _sfxSource;
+        [SerializeField] private AudioClip[] _treeHitsSFX;
+        [SerializeField] private AudioClip[] _pickupSFX;
         
         private readonly HashSet<ITick> _tickables = new();
         private readonly HashSet<IDisposable> _disposables = new();
@@ -28,7 +33,7 @@ namespace Player {
 
         private void Awake() {
             _input = new GameplayInput();
-            _mouseRaycaster = new MouseRaycaster(Camera.main, _raycastDistance, _interactionLayerMask, QueryTriggerInteraction.Collide);
+            _mouseRaycaster = new MouseRaycaster(Camera.main, _raycastDistance, triggerInteraction: QueryTriggerInteraction.Collide);
         }
 
         private void Start() {
@@ -50,9 +55,23 @@ namespace Player {
 
             if (!Mouse.current.leftButton.wasPressedThisFrame)
                 return;
-            
-            if (_mouseRaycaster.CurrentHitObject != null && _mouseRaycaster.CurrentHitObject.TryGetComponent(out IPickable pickable))
+
+            if (_mouseRaycaster.CurrentHitObject == null) 
+                return;
+
+            if (_mouseRaycaster.CurrentHitObject.TryGetComponent(out IPickable pickable)) {
                 pickable.Pick();
+                // PlaySfx(_pickupSFX.GetRandom());
+            }
+            else if (_mouseRaycaster.CurrentHitObject.TryGetComponent(out ICuttable cuttable)) {
+                cuttable.Hit();
+                // PlaySfx(_treeHitsSFX.GetRandom());
+            }
+        }
+
+        private void PlaySfx(AudioClip clip) {
+            _sfxSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+            _sfxSource.PlayOneShot(clip);
         }
 
         private void OnDestroy() {
@@ -75,15 +94,14 @@ namespace Player {
         }
         
         private void OnRayEnter(GameObject go) {
-            if (!go.TryGetComponent(out IPickable pickable))
+            if (!go.TryGetComponent(out IOutline pickable))
                 return;
             
-            Log.Debug($"Entered: {go.name}");
             pickable.SetOutlineState(true);
         }
         
         private void OnRayExit(GameObject go) {
-            if (!go.TryGetComponent(out IPickable pickable))
+            if (!go.TryGetComponent(out IOutline pickable))
                 return;
             
             pickable.SetOutlineState(false);

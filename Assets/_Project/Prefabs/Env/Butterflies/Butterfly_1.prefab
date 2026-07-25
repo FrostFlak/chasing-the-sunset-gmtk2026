@@ -48,10 +48,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Butterfly_1
       objectReference: {fileID: 0}
-    - target: {fileID: 6285392117878613796, guid: 55e1f5147a9e0e7469ac42d43f3c011e, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8843431478664225938, guid: 55e1f5147a9e0e7469ac42d43f3c011e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.81

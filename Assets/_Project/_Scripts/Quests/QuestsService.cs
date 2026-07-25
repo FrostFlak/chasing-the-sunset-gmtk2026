@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Helpers;
-using UnityEngine;
 
 namespace Quests {
-    public class QuestsService : MonoBehaviour {
+    public class QuestsService : SingletonMonoBehaviour<QuestsService> {
         
         private readonly Dictionary<string, Quest> _activeQuests = new();
         public event Action<Quest> OnQuestStarted;
         public event Action<Quest> OnQuestUpdated;
+        public event Action<Quest, int> OnQuestTimeUpdated;
         public event Action<Quest> OnQuestCompleted;
         public event Action<Quest> OnQuestFailed;
         
@@ -20,6 +20,7 @@ namespace Quests {
         
             quest.OnUpdated += HandleQuestUpdated;
             quest.OnCompleted += HandleQuestCompleted;
+            quest.OnTimeUpdated += HandleTimeUpdated;
             quest.OnFailed += HandleQuestFailed;
         
             _activeQuests.Add(quest.ID, quest);
@@ -30,12 +31,15 @@ namespace Quests {
         }
 
         private void HandleQuestUpdated(Quest quest) => OnQuestUpdated?.Invoke(quest);
+        
+        private void HandleTimeUpdated(Quest quest, int remainingTime) => OnQuestTimeUpdated?.Invoke(quest, remainingTime);
 
         private void HandleQuestCompleted(Quest quest) {
             Log.Debug($"Quest completed: {quest.Title}");
 
             quest.OnUpdated -= HandleQuestUpdated;
             quest.OnCompleted -= HandleQuestCompleted;
+            quest.OnTimeUpdated -= HandleTimeUpdated;
             quest.OnFailed -= HandleQuestFailed;
 
             _activeQuests.Remove(quest.ID);
@@ -48,6 +52,7 @@ namespace Quests {
 
             quest.OnUpdated -= HandleQuestUpdated;
             quest.OnCompleted -= HandleQuestCompleted;
+            quest.OnTimeUpdated -= HandleTimeUpdated;
             quest.OnFailed -= HandleQuestFailed;
 
             _activeQuests.Remove(quest.ID);

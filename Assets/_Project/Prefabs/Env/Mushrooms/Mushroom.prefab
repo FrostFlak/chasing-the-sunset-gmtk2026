@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8843431478664225938}
   - component: {fileID: 5720649036017960434}
   - component: {fileID: 5644224113468087150}
+  - component: {fileID: 4288773738868662184}
+  - component: {fileID: 5531520194116496875}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Untagged
@@ -56,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 25273db3153df514d9c5a4e77b5ff8e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +100,7 @@ AimConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.75
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: -0, y: 0, z: 0}
   m_RotationOffset: {x: 0, y: 0, z: 0}
   m_AimVector: {x: 0, y: 0, z: 1}
   m_UpVector: {x: 0, y: 1, z: 0}
@@ -113,3 +115,40 @@ AimConstraint:
   m_Sources:
   - sourceTransform: {fileID: 0}
     weight: 1
+--- !u!114 &4288773738868662184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285392117878613796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6dc484f44754ab7910757e1a81f08d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 5720649036017960434}
+  _questsService: {fileID: 0}
+  _targetQuestID: find_mushrooms
+  _outlineThickness: 4
+--- !u!65 &5531520194116496875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285392117878613796}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.69922394, y: 1.0466721, z: 0.10285789}
+  m_Center: {x: -0.0933443, y: 0.45375693, z: -0.0025929231}

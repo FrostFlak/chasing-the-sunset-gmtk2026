@@ -6,6 +6,8 @@ namespace CMSResources {
     /// </summary>
     public static class CMSIdRegistry {
 
-        public const string QuestView = "QuestView";
+        public const string Butterfly = "Butterfly";
+        public const string Player = "Player";
+        public const string TreeLog = "TreeLog";
     }
 }

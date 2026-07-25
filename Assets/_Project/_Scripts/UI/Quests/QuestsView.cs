@@ -7,25 +7,26 @@ namespace UI.Quests {
     public class QuestsView : MonoBehaviour {
         
         [SerializeField] private TMP_Text _titleLbl;
-        [SerializeField] private TMP_Text _descLbl;
+        [SerializeField] private TMP_Text _durationLbl;
         [SerializeField] private TMP_Text _progressLbl;
         [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private QuestsService _questsService;
         
         private void Start() {
             _canvasGroup.SetAlpha(false);
             
-            _questsService.OnQuestStarted += OnQuestStarted;
-            _questsService.OnQuestUpdated += OnQuestUpdated;
-            _questsService.OnQuestCompleted += OnQuestCompleted;
-            _questsService.OnQuestFailed += OnQuestFailed;
+            QuestsService.Instance.OnQuestStarted += OnQuestStarted;
+            QuestsService.Instance.OnQuestUpdated += OnQuestUpdated;
+            QuestsService.Instance.OnQuestTimeUpdated += OnQuestTimeUpdated;
+            QuestsService.Instance.OnQuestCompleted += OnQuestCompleted;
+            QuestsService.Instance.OnQuestFailed += OnQuestFailed;
         }
 
         private void OnDestroy() {
-            _questsService.OnQuestStarted -= OnQuestStarted;
-            _questsService.OnQuestUpdated -= OnQuestUpdated;
-            _questsService.OnQuestCompleted -= OnQuestCompleted;
-            _questsService.OnQuestFailed -= OnQuestFailed;
+            QuestsService.Instance.OnQuestStarted -= OnQuestStarted;
+            QuestsService.Instance.OnQuestUpdated -= OnQuestUpdated;
+            QuestsService.Instance.OnQuestTimeUpdated -= OnQuestTimeUpdated;
+            QuestsService.Instance.OnQuestCompleted -= OnQuestCompleted;
+            QuestsService.Instance.OnQuestFailed -= OnQuestFailed;
         }
         
         private void OnQuestStarted(Quest quest) {
@@ -35,10 +36,11 @@ namespace UI.Quests {
 
         private void OnQuestUpdated(Quest quest) {
             _titleLbl.SetText(quest.Title);
-            _descLbl.SetText(quest.Description);
             _progressLbl.SetText($"{quest.CurrentAmount} / {quest.RequiredAmount}");
         }
 
+        private void OnQuestTimeUpdated(Quest quest, int remainingTime) => _durationLbl.SetText($"{remainingTime} / {quest.Duration}");
+        
         private void OnQuestCompleted(Quest quest) => _canvasGroup.SetAlpha(false);
 
         private void OnQuestFailed(Quest quest) => _canvasGroup.SetAlpha(false);

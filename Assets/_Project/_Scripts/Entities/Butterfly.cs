@@ -2,11 +2,10 @@ using Quests;
 using UnityEngine;
 
 namespace Entities {
-    public class Butterfly : MonoBehaviour, IPickable {
+    public class Butterfly : MonoBehaviour, IOutline, IPickable {
 
         [Header("References")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private QuestsService _questsService;
         [SerializeField] private string _targetQuestID;
         [SerializeField] private int _outlineThickness;
         [SerializeField] private Transform[] _positions;
@@ -19,8 +18,8 @@ namespace Entities {
         [SerializeField] private float _wobbleSpeed = 5f;
 
         private readonly int _outlineThicknessID = Shader.PropertyToID("_Thickness");
-        private Vector3 _targetPosition;
         private MaterialPropertyBlock _mpb;
+        private Vector3 _targetPosition;
 
         private void Start() {
             _mpb = new MaterialPropertyBlock();
@@ -28,14 +27,14 @@ namespace Entities {
         }
 
         private void Update() {
-            // Vector3 direction = (_targetPosition - transform.position).normalized;
-            // Vector3 wobble = transform.right * (Mathf.Sin(Time.time * _wobbleSpeed) * _wobbleAmount);
-            // Vector3 movement = (direction + wobble).normalized;
-            //
-            // transform.position += movement * (_moveSpeed * Time.deltaTime);
-            //
-            // if (Vector3.Distance(transform.position, _targetPosition) < 0.3f)
-            //     PickRandomTarget();
+            Vector3 direction = (_targetPosition - transform.position).normalized;
+            Vector3 wobble = transform.right * (Mathf.Sin(Time.time * _wobbleSpeed) * _wobbleAmount);
+            Vector3 movement = (direction + wobble).normalized;
+            
+            transform.position += movement * (_moveSpeed * Time.deltaTime);
+            
+            if (Vector3.Distance(transform.position, _targetPosition) < 0.3f)
+                PickRandomTarget();
         }
 
         private void PickRandomTarget() {
@@ -55,7 +54,7 @@ namespace Entities {
         }
 
         public void Pick() {
-            var quest = _questsService.GetActiveQuest(_targetQuestID);
+            var quest = QuestsService.Instance.GetActiveQuest(_targetQuestID);
 
             if (quest == null || !quest.IsActive)
                 return;

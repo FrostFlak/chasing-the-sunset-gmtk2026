@@ -8,7 +8,6 @@ namespace Quests {
     public class Quest {
         [field: SerializeField] public string ID { get; private set; }
         [field: SerializeField] public string Title { get; private set; }
-        [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public int Duration { get; private set; }
         [field: SerializeField] public int RequiredAmount { get; private set; }
         public int CurrentAmount { get; private set; }
@@ -18,6 +17,7 @@ namespace Quests {
         
         public event Action<Quest> OnUpdated;
         public event Action<Quest> OnCompleted;
+        public event Action<Quest, int> OnTimeUpdated;
         public event Action<Quest> OnFailed;
         
         private Timer _questTimer;
@@ -29,7 +29,7 @@ namespace Quests {
             IsActive = true;
             OnUpdated?.Invoke(this);
             
-            _questTimer.Start(Duration, onComplete: () => OnFailed?.Invoke(this));
+            _questTimer.Start(Duration, onProgress: (_) => OnTimeUpdated?.Invoke(this, Mathf.RoundToInt(_questTimer.Remaining)), onComplete: () => OnFailed?.Invoke(this));
         }
 
         public void AddProgress(int amount) {

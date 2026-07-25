@@ -14,15 +14,18 @@ namespace UI.Quests {
         
         private void Start() {
             _canvasGroup.SetAlpha(false);
+            
             _questsService.OnQuestStarted += OnQuestStarted;
             _questsService.OnQuestUpdated += OnQuestUpdated;
             _questsService.OnQuestCompleted += OnQuestCompleted;
+            _questsService.OnQuestFailed += OnQuestFailed;
         }
-        
+
         private void OnDestroy() {
             _questsService.OnQuestStarted -= OnQuestStarted;
             _questsService.OnQuestUpdated -= OnQuestUpdated;
             _questsService.OnQuestCompleted -= OnQuestCompleted;
+            _questsService.OnQuestFailed -= OnQuestFailed;
         }
         
         private void OnQuestStarted(Quest quest) {
@@ -36,8 +39,8 @@ namespace UI.Quests {
             _progressLbl.SetText($"{quest.CurrentAmount} / {quest.RequiredAmount}");
         }
 
-        private void OnQuestCompleted(Quest quest) {
-            _canvasGroup.SetAlpha(false);
-        }
+        private void OnQuestCompleted(Quest quest) => _canvasGroup.SetAlpha(false);
+
+        private void OnQuestFailed(Quest quest) => _canvasGroup.SetAlpha(false);
     }
 }

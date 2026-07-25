@@ -348,6 +348,10 @@ MonoBehaviour:
   _cameraPivot: {fileID: 6748998652052250635}
   _controller: {fileID: 5040600543268080176}
   <Age>k__BackingField: 15
+  _raycastDistance: 30
+  _interactionLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &5040600543268080176
 MonoBehaviour:
   m_ObjectHideFlags: 0

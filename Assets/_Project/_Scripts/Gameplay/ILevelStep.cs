@@ -2,7 +2,7 @@
 
 namespace Gameplay {
     public interface ILevelStep {
-        event Action<ILevelStep> OnCompleted;
+        event Action<ILevelStep, StepResult> OnStepResult;
         void Initialize(LevelContext levelContext);
         void Enter();
     }

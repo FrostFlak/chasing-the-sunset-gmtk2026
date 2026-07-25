@@ -13,7 +13,7 @@ namespace UI.Notebook {
         private void OnEnable() => _closeButton.onClick.AddListener(Hide);
         private void OnDisable() => _closeButton.onClick.RemoveAllListeners();
 
-        public void Show() {
+        public void Show(int page) {
             gameObject.SetActive(true);
             OnShow?.Invoke();
         }

@@ -12,5 +12,6 @@ namespace Gameplay {
         [field: SerializeField] public QuestsService QuestsService { get; private set; }
         [field: SerializeField] public FadeScreenUI FadeScreenUI { get; private set; }
         [field: SerializeField] public Transform HouseTransform { get; private set; }
+        [field: SerializeField] public Transform SpawnPosition { get; private set; }
     }
 }

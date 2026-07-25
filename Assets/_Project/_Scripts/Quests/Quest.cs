@@ -1,5 +1,6 @@
 using System;
 using Alchemy.Inspector;
+using Helpers;
 using UnityEngine;
 
 namespace Quests {
@@ -8,6 +9,7 @@ namespace Quests {
         [field: SerializeField] public string ID { get; private set; }
         [field: SerializeField] public string Title { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
+        [field: SerializeField] public int Duration { get; private set; }
         [field: SerializeField] public int RequiredAmount { get; private set; }
         public int CurrentAmount { get; private set; }
         
@@ -16,11 +18,18 @@ namespace Quests {
         
         public event Action<Quest> OnUpdated;
         public event Action<Quest> OnCompleted;
+        public event Action<Quest> OnFailed;
         
-        public void Run() {
+        private Timer _questTimer;
+        
+        public void Run(QuestsService questsService) {
+            _questTimer = new Timer(questsService);
+            
             CurrentAmount = 0;
             IsActive = true;
             OnUpdated?.Invoke(this);
+            
+            _questTimer.Start(Duration, onComplete: () => OnFailed?.Invoke(this));
         }
 
         public void AddProgress(int amount) {

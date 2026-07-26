@@ -1,5 +1,7 @@
 ﻿using System;
 using Quests;
+using TMPEffects.Components;
+using TMPro;
 using UI;
 using UI.Notebook;
 using UnityEngine;
@@ -13,5 +15,7 @@ namespace Gameplay {
         [field: SerializeField] public FadeScreenUI FadeScreenUI { get; private set; }
         [field: SerializeField] public Transform HouseTransform { get; private set; }
         [field: SerializeField] public Transform SpawnPosition { get; private set; }
+        [field: SerializeField] public RectTransform CutsceneNotebook { get; private set; }
+        [field: SerializeField] public TMPWriter CutsceneNotebookLbl { get; private set; }
     }
 }

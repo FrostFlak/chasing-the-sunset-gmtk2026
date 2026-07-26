@@ -1,8 +1,9 @@
-﻿using Quests;
+﻿using Gameplay;
+using Quests;
 using UnityEngine;
 
 namespace Entities {
-    public class Mushroom : MonoBehaviour, IOutline, IPickable{
+    public class Mushroom : MonoBehaviour, IOutline, IInteractable{
         
         [Header("References")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -14,17 +15,21 @@ namespace Entities {
 
         private void Start() => _mpb = new MaterialPropertyBlock();
 
-        public void Pick() {
+        public void Interact() {
             var quest = QuestsService.Instance.GetActiveQuest(_targetQuestID);
-
             if (quest == null || !quest.IsActive)
                 return;
 
             quest.AddProgress(1);
+            AudioService.Instance.PlayPickupSFX();
             Destroy(gameObject);
         }
 
         public void SetOutlineState(bool state) {
+            var quest = QuestsService.Instance.GetActiveQuest(_targetQuestID);
+            if (quest == null || !quest.IsActive) 
+                return;
+            
             _spriteRenderer.GetPropertyBlock(_mpb);
             _mpb.SetFloat(_outlineThicknessID, state ? _outlineThickness : 0);
             _spriteRenderer.SetPropertyBlock(_mpb);

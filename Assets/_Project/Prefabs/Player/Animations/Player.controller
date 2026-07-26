@@ -31,7 +31,7 @@ BlendTree:
   m_Name: 15
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 0}
+    m_Motion: {fileID: 7400000, guid: 7f1ac30eb482f4f4fa38bcd6693df9ef, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -67,7 +67,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 75
+  m_Name: 60
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 8cf639ebb1078e14196972369be30923, type: 2}
@@ -133,16 +133,8 @@ BlendTree:
     m_DirectBlendParameter: Age
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7851258176206789820}
-    m_Threshold: 60
-    m_Position: {x: 60, y: 60}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Age
-    m_Mirror: 0
-  - serializedVersion: 2
     m_Motion: {fileID: -4307374767752190542}
-    m_Threshold: 75
+    m_Threshold: 60
     m_Position: {x: 75, y: 75}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -151,7 +143,7 @@ BlendTree:
   m_BlendParameter: Age
   m_BlendParameterY: Age
   m_MinThreshold: 15
-  m_MaxThreshold: 75
+  m_MaxThreshold: 60
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -230,7 +222,7 @@ BlendTree:
   m_Name: 45
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 0}
+    m_Motion: {fileID: 7400000, guid: 33f57eb9a5de20b49987c0b805090b1c, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -269,7 +261,7 @@ BlendTree:
   m_Name: 30
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 0}
+    m_Motion: {fileID: 7400000, guid: 1e4700203ba666e4fad18b730df032e3, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

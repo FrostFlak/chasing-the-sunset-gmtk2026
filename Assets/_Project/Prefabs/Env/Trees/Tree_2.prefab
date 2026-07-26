@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 2541726033994908185, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b6a4b5c38eb473f458792dd3276e2f9a, type: 3}
+      objectReference: {fileID: -1967434805, guid: b570a62960d71e34ea1d9a61fe5ca424, type: 3}
     - target: {fileID: 2541726033994908185, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -62,6 +62,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2559234765267730703, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348711922705821904, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ecbe3eac61dc514fb21f0e7318797bd, type: 2}
+    - target: {fileID: 7361157844816673771, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361157844816673771, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361157844816673771, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361157844816673771, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7524580582154865622, guid: acf703c6e59bc934bae5d4eaefd2ed12, type: 3}

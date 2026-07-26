@@ -8,12 +8,17 @@ namespace Gameplay {
         
         [SerializeField] private List<Level> _levels;
         [SerializeField] private LevelContext _levelContext;
-        
-        private int _currentLevelIdx;
-        private bool _lastLevelFailed;
-        public event Action<bool> OnLevelStatusChanged;
+        [SerializeField] private int _firstLevelIDX;
 
-        private void Start() => StartLevel(0);
+        private int _currentLevelIdx;
+        public event Action<int, bool> OnLevelStateChanged; 
+        
+        private void Start() {
+            AudioService.Instance.PlayMusic();
+            AudioService.Instance.PlayAmbient();
+            
+            StartLevel(_firstLevelIDX);
+        }
 
         private void StartLevel(int index) {
             _currentLevelIdx = index;
@@ -22,38 +27,27 @@ namespace Gameplay {
             level.OnCompleted += OnLevelCompleted;
             level.OnFailed += OnLevelFailed;
             
-            OnLevelStatusChanged?.Invoke(_lastLevelFailed);
             Log.Debug($"Started Level [{_currentLevelIdx}]");
             
             level.Start(_levelContext);
         }
 
-        private void OnLevelCompleted(Level level) {
-            level.OnCompleted -= OnLevelCompleted;
-            level.OnFailed -= OnLevelFailed;
-            
-            Log.Debug($"Completed Level [{_currentLevelIdx}]");
-            _lastLevelFailed = false;
-            _currentLevelIdx++;
-            if (_currentLevelIdx >= _levels.Count) {
-                OnGameCompleted();
-                return;
-            }
-
-            StartLevel(_currentLevelIdx);
-        }
+        private void OnLevelCompleted(Level level) => FinishCurrentLvl(true);
 
         private void OnGameCompleted() {
             Log.Debug("Completed All Levels");
         }
 
-        private void OnLevelFailed(Level level) {
+        private void OnLevelFailed(Level level) => FinishCurrentLvl(false);
+
+        private void FinishCurrentLvl(bool completed) {
+            Level level = _levels[_currentLevelIdx];
             level.OnCompleted -= OnLevelCompleted;
             level.OnFailed -= OnLevelFailed;
             
-            Log.Debug($"Failed Level [{_currentLevelIdx}]");
+            Log.Debug($"{(completed ? "Completed" : "Failed")} Level [{_currentLevelIdx}]");
+            OnLevelStateChanged?.Invoke(_currentLevelIdx, completed);
             
-            _lastLevelFailed = true;
             _currentLevelIdx++;
             if (_currentLevelIdx >= _levels.Count) {
                 OnGameCompleted();

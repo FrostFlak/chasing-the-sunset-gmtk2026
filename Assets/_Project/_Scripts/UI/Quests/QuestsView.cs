@@ -39,7 +39,7 @@ namespace UI.Quests {
             _progressLbl.SetText($"{quest.CurrentAmount} / {quest.RequiredAmount}");
         }
 
-        private void OnQuestTimeUpdated(Quest quest, int remainingTime) => _durationLbl.SetText($"{remainingTime} / {quest.Duration}");
+        private void OnQuestTimeUpdated(Quest quest, int remainingTime) => _durationLbl.SetText($"{remainingTime}");
         
         private void OnQuestCompleted(Quest quest) => _canvasGroup.SetAlpha(false);
 

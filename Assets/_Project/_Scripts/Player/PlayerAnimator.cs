@@ -34,20 +34,27 @@ namespace Player {
         
         public void Tick(float dt) {
             _animator.SetFloat(_age, _player.Age);
-            
+
             if (_moveInput.sqrMagnitude < 0.001f) {
                 _animator.SetFloat(_velocityX, 0f);
                 _animator.SetFloat(_velocityY, 0f);
                 return;
             }
 
-            if (Mathf.Abs(_moveInput.x) >= Mathf.Abs(_moveInput.y)) {
+            if (Mathf.Abs(_moveInput.x) > 0.001f) {
                 _animator.SetFloat(_velocityX, 1f);
                 _animator.SetFloat(_velocityY, 0f);
 
                 _spriteRenderer.flipX = _moveInput.x > 0f;
+                return;
             }
-            else {
+
+            if (_moveInput.y > 0f) {
+                _animator.SetFloat(_velocityX, 1f);
+                _animator.SetFloat(_velocityY, 0f);
+            }
+            else
+            {
                 _animator.SetFloat(_velocityX, 0f);
                 _animator.SetFloat(_velocityY, 1f);
             }

@@ -6,6 +6,7 @@ using Helpers.ExtMethods;
 using Helpers.Tick;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using Random = System.Random;
 
 namespace Player {
@@ -15,15 +16,12 @@ namespace Player {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private DecalProjector _shadowDecal;
         [SerializeField] private Transform _cameraPivot;
         [SerializeField] private PlayerController _controller;
         [Header("Properties")]
         [field: SerializeField] public int Age { get; set; }
-        [SerializeField] private int _raycastDistance; 
-        [Header("SFX")]
-        [SerializeField] private AudioSource _sfxSource;
-        [SerializeField] private AudioClip[] _treeHitsSFX;
-        [SerializeField] private AudioClip[] _pickupSFX;
+        [SerializeField] private int _raycastDistance;
         
         private readonly HashSet<ITick> _tickables = new();
         private readonly HashSet<IDisposable> _disposables = new();
@@ -59,19 +57,8 @@ namespace Player {
             if (_mouseRaycaster.CurrentHitObject == null) 
                 return;
 
-            if (_mouseRaycaster.CurrentHitObject.TryGetComponent(out IPickable pickable)) {
-                pickable.Pick();
-                // PlaySfx(_pickupSFX.GetRandom());
-            }
-            else if (_mouseRaycaster.CurrentHitObject.TryGetComponent(out ICuttable cuttable)) {
-                cuttable.Hit();
-                // PlaySfx(_treeHitsSFX.GetRandom());
-            }
-        }
-
-        private void PlaySfx(AudioClip clip) {
-            _sfxSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
-            _sfxSource.PlayOneShot(clip);
+            if (_mouseRaycaster.CurrentHitObject.TryGetComponent(out IInteractable pickable))
+                pickable.Interact();
         }
 
         private void OnDestroy() {
@@ -91,6 +78,7 @@ namespace Player {
                 _input.Disable();
             
             _spriteRenderer.enabled = active;
+            _shadowDecal.gameObject.SetActive(active);
         }
         
         private void OnRayEnter(GameObject go) {

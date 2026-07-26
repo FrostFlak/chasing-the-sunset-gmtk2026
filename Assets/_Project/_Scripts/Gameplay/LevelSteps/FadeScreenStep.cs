@@ -19,9 +19,9 @@ namespace Gameplay.LevelSteps {
             _levelContext.FadeScreenUI.OnContinueButtonClick += OnFadeScreenBtnClicked;
             
             if (_fadeIn)
-                _levelContext.FadeScreenUI.FadeIn(_fadeDuration, onComplete: OnFadeComplete);
+                _levelContext.FadeScreenUI.FadeIn(_fadeDuration, _requireContinueClick, onComplete: OnFadeComplete);
             else
-                _levelContext.FadeScreenUI.FadeOut(_fadeDuration, onComplete: OnFadeComplete);
+                _levelContext.FadeScreenUI.FadeOut(_fadeDuration, _requireContinueClick, onComplete: OnFadeComplete);
         }
 
         private void OnFadeScreenBtnClicked() {

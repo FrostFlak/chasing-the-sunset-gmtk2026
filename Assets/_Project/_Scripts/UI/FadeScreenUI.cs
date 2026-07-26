@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using Helpers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace UI {
         
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Button _continueButton;
+        [SerializeField] private TMP_Text _continueLbl;
 
         public event Action OnContinueButtonClick;
         private void Start() {
@@ -20,20 +22,16 @@ namespace UI {
             _continueButton.onClick.RemoveAllListeners();
         }
 
-        public void Show() {
-            _canvasGroup.DOFade(1, 0).From(0).SetEase(Ease.Linear).OnComplete(() => {
-                _canvasGroup.SetStateNoAlpha(true);
-            });
-        }
-        
-        public void FadeIn(float duration, Action onComplete) {
+        public void FadeIn(float duration, bool requireContinueClick, Action onComplete = null) {
+            _continueLbl.gameObject.SetActive(requireContinueClick);
             _canvasGroup.DOFade(1, duration).From(0).SetEase(Ease.Linear).OnComplete(() => {
                 _canvasGroup.SetStateNoAlpha(true);
                 onComplete?.Invoke();
             });
         }
         
-        public void FadeOut(float duration, Action onComplete) {
+        public void FadeOut(float duration, bool requireContinueClick, Action onComplete = null) {
+            _continueLbl.gameObject.SetActive(requireContinueClick);
             _canvasGroup.DOFade(0, duration).From(1).SetEase(Ease.Linear).OnComplete(() => {
                 _canvasGroup.SetStateNoAlpha(false);
                 onComplete?.Invoke();

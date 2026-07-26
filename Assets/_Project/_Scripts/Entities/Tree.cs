@@ -1,9 +1,10 @@
 ﻿using CMSResources;
+using Gameplay;
 using Quests;
 using UnityEngine;
 
 namespace Entities {
-    public class Tree : MonoBehaviour, IOutline, ICuttable {
+    public class Tree : MonoBehaviour, IOutline, IInteractable {
         
         [Header("References")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -34,7 +35,7 @@ namespace Entities {
             _spriteRenderer.SetPropertyBlock(_mpb);
         }
 
-        public void Hit() {
+        public void Interact() {
             var quest = QuestsService.Instance.GetActiveQuest(_targetQuestID);
             if (quest == null || !quest.IsActive) 
                 return;
@@ -46,6 +47,7 @@ namespace Entities {
             }
 
             _currentHitsAmount++;
+            AudioService.Instance.PlayTreeHitSFX();
         }
 
         private void SpawnLogs() {

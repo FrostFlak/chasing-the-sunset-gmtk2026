@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6748998652052250635}
   - component: {fileID: 2424325499349601451}
   - component: {fileID: 7461722797071078363}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CinemachineCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,8 @@ GameObject:
   - component: {fileID: 535247314034267376}
   - component: {fileID: 6744753384624215109}
   - component: {fileID: 4540001216411670793}
-  m_Layer: 0
+  - component: {fileID: 7633552493906612657}
+  m_Layer: 2
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,6 +244,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7633552493906612657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125878164269741858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dc9ea6b14941358f65e4968b62e964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _footstepsSource: {fileID: 9165940870999404666}
+  _footstepsSfx:
+  - {fileID: 8300000, guid: 4ee88fed094bd5241bef0159d2500f8c, type: 3}
+  - {fileID: 8300000, guid: 76a62fdcf247a924eb3ae26586c3fee1, type: 3}
+  - {fileID: 8300000, guid: f8a2f84f44a1d994f9d027e94f435d31, type: 3}
 --- !u!1 &5177844109449401260
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,10 +272,9 @@ GameObject:
   - component: {fileID: 8208283961439108320}
   - component: {fileID: 1582150151196612047}
   - component: {fileID: 3694241951262852559}
-  - component: {fileID: 4017551490803586487}
   - component: {fileID: 7021480257782511387}
   - component: {fileID: 5040600543268080176}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,6 +296,8 @@ Transform:
   m_Children:
   - {fileID: 6748998652052250635}
   - {fileID: 6693562699338668611}
+  - {fileID: 4557254687235001321}
+  - {fileID: 4831482687953776296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1582150151196612047
@@ -331,26 +350,155 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &4017551490803586487
-AudioSource:
+--- !u!114 &7021480257782511387
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5177844109449401260}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b255f6fbe65f44b9ba3c93af1b2c2cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1582150151196612047}
+  _animator: {fileID: 4540001216411670793}
+  _spriteRenderer: {fileID: 6744753384624215109}
+  _shadowDecal: {fileID: 9005432958273954568}
+  _cameraPivot: {fileID: 6748998652052250635}
+  _controller: {fileID: 5040600543268080176}
+  <Age>k__BackingField: 15
+  _raycastDistance: 20
+--- !u!114 &5040600543268080176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177844109449401260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13a28a794a8f041898b3cd61e44cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 5
+  _cameraAngles:
+  - 0
+  - 45
+  - 135
+  - 225
+  - 315
+  _cameraRotationSmooth: 10
+  _maxSlopeAngle: 45
+--- !u!1 &6979100021989019766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4557254687235001321}
+  - component: {fileID: 9005432958273954568}
+  m_Layer: 2
+  m_Name: DecalShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4557254687235001321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979100021989019766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.70710707, y: -0, z: -0, w: 0.70710653}
+  m_LocalPosition: {x: 0, y: -0.973, z: 0.142}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8208283961439108320}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &9005432958273954568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979100021989019766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: cbb2cbde1dd2cf848bfafb337bdc8530, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0.75}
+  m_Size: {x: 1.75, y: 1.75, z: 1.5}
+  m_FadeFactor: 0.65
+--- !u!1 &8552339328280846950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4831482687953776296}
+  - component: {fileID: 9165940870999404666}
+  m_Layer: 2
+  m_Name: AudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4831482687953776296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552339328280846950}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8208283961439108320}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &9165940870999404666
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552339328280846950}
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -428,46 +576,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7021480257782511387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5177844109449401260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b255f6fbe65f44b9ba3c93af1b2c2cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1582150151196612047}
-  _animator: {fileID: 4540001216411670793}
-  _spriteRenderer: {fileID: 6744753384624215109}
-  _cameraPivot: {fileID: 6748998652052250635}
-  _controller: {fileID: 5040600543268080176}
-  <Age>k__BackingField: 15
-  _raycastDistance: 20
-  _sfxSource: {fileID: 4017551490803586487}
-  _treeHitsSFX: []
-  _pickupSFX: []
---- !u!114 &5040600543268080176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5177844109449401260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce13a28a794a8f041898b3cd61e44cb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _cameraAngles:
-  - 0
-  - 45
-  - 135
-  - 225
-  - 315
-  _cameraRotationSmooth: 10
-  _maxSlopeAngle: 45
